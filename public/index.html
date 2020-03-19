@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Player</title>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<style>
+		body {
+			margin: 15px;
+			font-family: sans-serif
+		}
+
+		h3 {
+			padding: 0;
+			margin: 0;
+			margin-bottom: 1rem;
+		}
+
+		#chat {
+			background: rgb(245, 245, 245);
+			height: 200px;
+			width: calc(100% - 20px);
+			max-width: 620px;
+			border: 1px solid gray;
+			margin-bottom: 10px;
+			padding: 10px;
+			overflow-y: auto;
+			overflow-y: scroll;
+		}
+
+		#controls {
+			display: grid;
+			width: calc(100%);
+			max-width: 642px;
+			grid-template-columns: 25% 55% 20%;
+		}
+
+		#controls input {
+			padding: 8px 5px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="chat"></div>
+	<form autocomplete="off">
+		<div id="controls">
+			<input type="text" id="username" placeholder="Usuario" />
+			<input type="text" id="content" placeholder="Mensaje" />
+			<input type="submit" value="Enviar" />
+		</div>
+	</form>
+	</div>
+	<script src="//code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		const socket = io()
+		$(function () {
+			socket.on('hello', () => {
+				$('#chat')
+					.empty()
+					.append('<h3>Bienvenido al chat</h3>')
+			})
+		})
+
+		$('form').on('submit', event => {
+			event.preventDefault()
+			let msg = {
+				name: $('#username').val().trim(),
+				content: $('#content').val().trim()
+			}
+			if ((msg.name.length > 0) && (msg.content.length > 0)) {
+				socket.emit('new_msg', msg)
+				$('#username').attr('disabled', 'disabled')
+				$('#content').val('').focus()
+			}
+		})
+
+		socket.on('spread_msg', msg => {
+			$('#chat')
+				.append(`<b>${special(msg.name)}</b> ${special(msg.content)}<br>`)
+		})
+
+		const special = str => {
+			return (str.replace(/</gi, '&lt;')).replace(/>/gi, '&gt;')
+		}
+	</script>
+</body>
+
+</html>
