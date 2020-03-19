@@ -1,22 +1,32 @@
 {
-  "name": "neightbour-game",
-  "version": "1.0.0",
-  "description": "Just a pane using sockets to play quiz games between neighbours or friends.",
-  "main": "index.js",
-  "scripts": {
-    "start": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "game",
-    "node",
-    "sockets"
-  ],
-  "author": "Jose Manuel Cerrejon Gonzalez",
-  "mail": "ulysess@gmail.com",
-  "license": "MIT",
-  "dependencies": {
-    "express": "^4.17.1",
-    "socket.io": "^2.3.0"
-  }
+	"name": "neightbour-game",
+	"version": "1.0.0",
+	"description": "Just a pane using sockets to play quiz games between neighbours or friends.",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon app.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"game",
+		"node",
+		"realtime",
+		"framework",
+		"websocket",
+		"tcp",
+		"events",
+		"socket",
+		"io"
+	],
+	"author": "Jose Manuel Cerrejon Gonzalez",
+	"mail": "ulysess@gmail.com",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/jmcerrejon/neightbour-game"
+	},
+	"dependencies": {
+		"express": "^4.17.1",
+		"socket.io": "^2.3.0"
+	}
 }
