@@ -5,10 +5,14 @@ const io = require('socket.io')(http)
 const players = []
 
 io.on('connection', socket => {
-	console.log('New user connected!')
+	console.log('New user connected | Id: ', socket.id)
 	socket.emit('hello')
 	socket.on('new_msg', msg => {
 		io.sockets.emit('spread_msg', msg)
+
+	})
+	socket.on('disconnect', soket => {
+		console.log('User disconnected | Id: ', socket.id)
 	})
 })
 
