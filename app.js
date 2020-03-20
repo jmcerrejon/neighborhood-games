@@ -14,7 +14,7 @@ io.on('connection', socket => {
 		players.addPlayer(player)
 		console.log('New player:', JSON.stringify(player, null, 2))
 
-		socket.emit('get_players', players.getAvailablePlayers())
+		io.sockets.emit('get_players', players.getAvailablePlayers())
 	})
 
 	socket.on('disconnect', soket => {
