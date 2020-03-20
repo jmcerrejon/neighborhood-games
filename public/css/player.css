@@ -11,7 +11,7 @@ h3 {
 
 #chat {
 	background: rgb(245, 245, 245);
-	height: 200px;
+	height: 30px;
 	width: calc(100% - 20px);
 	max-width: 620px;
 	border: 1px solid gray;
