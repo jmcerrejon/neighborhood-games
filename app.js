@@ -2,29 +2,23 @@ const express = require('express')
 const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
-let players = new Set()
+const players = require('./src/player')()
 
 io.on('connection', socket => {
-	console.log('New user connected | Id:', socket.id)
-
 	socket.on('new_msg', msg => {
 		io.sockets.emit('spread_msg', msg)
 	})
 
 	socket.on('new_player', player => {
 		player.id = socket.id
-		players.add(player)
+		players.addPlayer(player)
+		console.log('New player:', JSON.stringify(player, null, 2))
 
-		socket.emit('get_players', [...players])
+		socket.emit('get_players', players.getAvailablePlayers())
 	})
 
 	socket.on('disconnect', soket => {
-		players.forEach(value => {
-			if (value.id === socket.id) {
-				players.delete(value)
-				console.log('Team disconnected:', value)
-			}
-		})
+		players.delPlayer(socket.id)
 	})
 })
 
