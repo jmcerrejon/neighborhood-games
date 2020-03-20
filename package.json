@@ -7,7 +7,8 @@
 		"start": "node app.js",
 		"start-dev": "nodemon app.js",
 		"open-git": "open -a 'Google Chrome' https://github.com/jmcerrejon/neightbour-game",
-		"open-player": "open -a 'Google Chrome' http://127.0.0.1:8080/index.html",
+		"open-player1": "open -a 'Google Chrome' 'http://127.0.0.1:8080/index.html?team=Atreides+House&room=main'",
+		"open-player2": "open -a 'Google Chrome' 'http://127.0.0.1:8080/index.html?team=Harkonnen+House&room=main'",
 		"open-moderator": "open -a 'Google Chrome' http://127.0.0.1:8080/admin.html"
 	},
 	"keywords": [
