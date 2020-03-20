@@ -6,7 +6,7 @@ Just a board to manage playing with your neighbours/family/friends.
 
 **NOTE:** It's just a tool. No games came inside!.
 
-**WORK IN PROGRESS**
+⚠️ **WORK IN PROGRESS**
 
 ## Installation
 
