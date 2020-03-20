@@ -1,12 +1,12 @@
 {
-	"name": "neightbour-game",
+	"name": "neighborhood-games",
 	"version": "1.0.0",
-	"description": "Just a pane using sockets to play quiz games between neighbours or friends.",
+	"description": "Just a pane using sockets to play quiz games between neighbours/family/friends.",
 	"main": "index.js",
 	"scripts": {
 		"start": "node app.js",
 		"start-dev": "nodemon app.js",
-		"open-git": "open -a 'Google Chrome' https://github.com/jmcerrejon/neightbour-game",
+		"open-git": "open -a 'Google Chrome' https://github.com/jmcerrejon/neighborhood-games",
 		"open-player1": "open -a 'Google Chrome' 'http://127.0.0.1:8080/index.html?team=Atreides+House&room=main'",
 		"open-player2": "open -a 'Google Chrome' 'http://127.0.0.1:8080/index.html?team=Harkonnen+House&room=main'",
 		"open-moderator": "open -a 'Google Chrome' http://127.0.0.1:8080/admin.html"
@@ -26,12 +26,12 @@
 	"mail": "ulysess@gmail.com",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/jmcerrejon/neightbour-game/issues"
+		"url": "https://github.com/jmcerrejon/neighborhood-games/issues"
 	},
-	"homepage": "https://github.com/jmcerrejon/neightbour-game#readme",
+	"homepage": "https://github.com/jmcerrejon/neighborhood-games#readme",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/jmcerrejon/neightbour-game"
+		"url": "git+https://github.com/jmcerrejon/neighborhood-games"
 	},
 	"dependencies": {
 		"express": "^4.17.1",

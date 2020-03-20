@@ -1,4 +1,4 @@
-# Neighbours' game
+# Neighborhood games
 
 ## Description
 
