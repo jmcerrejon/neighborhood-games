@@ -1,9 +1,12 @@
 const socket = io()
+
 $(() => {
-	socket.on('hello', () => {
+	socket.on('hello', id => {
+		const team = getUrlParam('team', 'Harkonen House')
+		const room = getUrlParam('room', 'secondary')
 		$('#chat')
 			.empty()
-			.append('<h3>Bienvenido al chat</h3>')
+			.append(`<h3>Welcome ${team} to room ${room}!</h3>`)
 	})
 })
 
