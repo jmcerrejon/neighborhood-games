@@ -1,21 +1,21 @@
 // TODO Transform module to a Class
 
-module.exports = function () {
-	const players = new Map()
+module.exports = () => {
+ 	const players = new Map()
 
-	function addPlayer(player) {
+	const addPlayer = (player) => {
 		players.set(player.id, { player })
 	}
 
-	function getAvailablePlayers() {
+	const getAvailablePlayers = () => {
 		return [...players.values()]
 	}
 
-	function getPlayer(id) {
+	const getPlayer = id => {
 		return players.get(id)
 	}
 
-	function delPlayer(id) {
+	const delPlayer = id => {
 		console.log('Team disconnected:', getPlayer(id))
 		players.delete(id)
 		console.log('Current teams:', getAvailablePlayers())
