@@ -19,7 +19,7 @@ npm run start
 
 ## How to play
 
-The idea is simple.
+The idea is simple:
 
 1. Scream to your neighbours through the window who want to play. You can use any messaging instant chat app, but is less funny.
 
