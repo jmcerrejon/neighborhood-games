@@ -25,6 +25,11 @@ io.on('connection', socket => {
 		players.delPlayer(socket.id)
 		io.sockets.emit('get_players', players.getAvailablePlayers())
 	})
+
+	socket.on('button_ready', isReady => {
+		console.log('Change button to', isReady);
+		io.sockets.emit('change_button', isReady)
+	})
 })
 
 app.use(express.static(__dirname + '/public'))
