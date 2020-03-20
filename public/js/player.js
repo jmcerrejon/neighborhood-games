@@ -1,9 +1,18 @@
 const socket = io()
 
 $(() => {
-	socket.on('hello', id => {
+	const player = {
+		team: getUrlParam('team', 'Harkonen House'),
+		room: getUrlParam('room', 'secondary')
+	}
+
+	socket.emit('new_player', player)
+
+	socket.on('get_players', players => {
+		console.log(JSON.stringify(players, null, 2))
 		const team = getUrlParam('team', 'Harkonen House')
 		const room = getUrlParam('room', 'secondary')
+
 		$('#chat')
 			.empty()
 			.append(`<h3>Welcome ${team} to room ${room}!</h3>`)
