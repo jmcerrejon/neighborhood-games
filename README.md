@@ -1,5 +1,7 @@
 # Neighborhood games
 
+![image](./images/capture_v0.1.png)
+
 ## Description
 
 Just a board to manage playing with your neighbours/family/friends.
