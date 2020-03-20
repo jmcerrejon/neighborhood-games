@@ -4,8 +4,11 @@
 	"description": "Just a pane using sockets to play quiz games between neighbours or friends.",
 	"main": "index.js",
 	"scripts": {
-		"start": "nodemon app.js",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"start": "node app.js",
+		"start-dev": "nodemon app.js",
+		"open-git": "open -a 'Google Chrome' https://github.com/jmcerrejon/neightbour-game",
+		"open-player": "open -a 'Google Chrome' http://127.0.0.1:8080/index.html",
+		"open-moderator": "open -a 'Google Chrome' http://127.0.0.1:8080/admin.html"
 	},
 	"keywords": [
 		"game",
@@ -21,9 +24,13 @@
 	"author": "Jose Manuel Cerrejon Gonzalez",
 	"mail": "ulysess@gmail.com",
 	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/jmcerrejon/neightbour-game/issues"
+	},
+	"homepage": "https://github.com/jmcerrejon/neightbour-game#readme",
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/jmcerrejon/neightbour-game"
+		"url": "git+https://github.com/jmcerrejon/neightbour-game"
 	},
 	"dependencies": {
 		"express": "^4.17.1",

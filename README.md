@@ -40,11 +40,23 @@ The idea is simple.
 
 [ ] First version.
 
+[ ] Refactor.
+
+[ ] Remove jQuery.
+
 [ ] Localization according with the user web browser.
 
 [ ] Save data state.
 
 [ ] Multi rooms.
+
+[ ] Test.
+
+## DEV
+
+* You can use *DEBUG*: ``` "start-dev": "DEBUG=* nodemon app.js" ```
+
+* On Chrome console command: ``` localStorage.debug = '*'; ```
 
 ## Author
 
