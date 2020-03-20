@@ -9,6 +9,10 @@ io.on('connection', socket => {
 		io.sockets.emit('spread_msg', msg)
 	})
 
+	socket.on('get_players', () => {
+		socket.emit('get_players', players.getAvailablePlayers())
+	})
+
 	socket.on('new_player', player => {
 		player.id = socket.id
 		players.addPlayer(player)
@@ -19,6 +23,7 @@ io.on('connection', socket => {
 
 	socket.on('disconnect', soket => {
 		players.delPlayer(socket.id)
+		io.sockets.emit('get_players', players.getAvailablePlayers())
 	})
 })
 
