@@ -11,3 +11,7 @@ const getUrlVars = () => {
 
     return vars;
 }
+
+const setButtonColor = (divId, color) => {
+	document.getElementById(divId).className = color
+}
