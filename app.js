@@ -27,7 +27,6 @@ io.on('connection', socket => {
 	})
 
 	socket.on('button_ready', isReady => {
-		console.log('Change button to', isReady);
 		io.sockets.emit('change_button', isReady)
 	})
 })
