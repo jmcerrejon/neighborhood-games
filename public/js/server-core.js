@@ -13,13 +13,8 @@ $(() => {
 	})
 })
 
-$('#button').click((event) => {
-	socket.emit('button_ready', state.isReady)
-	// TODO change button color to gray/Yellow
-	changeButtonColor(state.isReady)
+$('#button').click(event => {
 	state.isReady = !state.isReady
+	socket.emit('button_ready', state.isReady)
+	setButtonColor('button', (state.isReady) ? 'button-gray' : 'button-yellow')
 })
-
-const changeButtonColor = isReady => {
-	console.log((isReady ) ? 'Gray' : 'Yellow')
-}

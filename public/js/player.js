@@ -9,7 +9,6 @@ $(() => {
 	socket.emit('new_player', player)
 
 	socket.on('get_players', players => {
-		console.log(JSON.stringify(players, null, 2))
 		const team = getUrlParam('team', 'Harkonen House')
 		const room = getUrlParam('room', 'secondary')
 
@@ -39,9 +38,13 @@ socket.on('spread_msg', msg => {
 })
 
 socket.on('change_button', isReady => {
-	console.log('the button is', isReady)
+	setButtonColor('button', (isReady) ? 'button-yellow' : 'button-gray')
 })
 
 const special = str => {
 	return (str.replace(/</gi, '&lt;')).replace(/>/gi, '&gt;')
 }
+
+$('#button').click(event => {
+	socket.emit('button_pressed', player)
+})
