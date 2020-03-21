@@ -1,6 +1,6 @@
 # Neighborhood games
 
-![image](./images/capture_v0.1.png)
+![image](./images/capture_v0.2.png)
 
 ## Description
 
