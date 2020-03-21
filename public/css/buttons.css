@@ -1,0 +1,117 @@
+.button-yellow {
+	height: 200px;
+	width: calc(95% - 20px);
+	max-width: 590px;
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background:linear-gradient(to bottom, #ffff03 5%, #acc232 100%);
+	background-color:#ffff03;
+	border-radius:5px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:11px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+}
+
+.button-yellow:hover {
+	background:linear-gradient(to bottom, #acc232 5%, #ffff03 100%);
+	background-color:#acc232;
+}
+
+.button-yellow:active {
+	position:relative;
+	top:1px;
+}
+
+.button-green:hover {
+	height: 200px;
+	width: calc(95% - 20px);
+	box-shadow:inset 0px 1px 3px 0px #3dc21b;
+	background:linear-gradient(to bottom, #44c767 5%, #48991d 100%);
+	background-color:#44c767;
+	border-radius:5px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:11px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2f6627;
+}
+
+.button-green:hover {
+	background:linear-gradient(to bottom, #48991d 5%, #44c767 100%);
+	background-color:#48991d;
+}
+
+.button-green:active {
+	position:relative;
+	top:1px;
+}
+
+.button-red {
+	height: 200px;
+	width: calc(95% - 20px);
+	box-shadow:inset 0px 1px 3px 0px #c21b3d;
+	background:linear-gradient(to bottom, #ff0f2f 5%, #991d32 100%);
+	background-color:#ff0f2f;
+	border-radius:5px;
+	border:1px solid #ab194a;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:11px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #662834;
+}
+
+.button-red:hover {
+	background:linear-gradient(to bottom, #991d32 5%, #ff0f2f 100%);
+	background-color:#991d32;
+}
+
+.button-red:hover {
+	position:relative;
+	top:1px;
+}      
+
+.button-gray {
+	height: 200px;
+	width: calc(95% - 20px);
+	max-width: 590px;
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	background-color:#768d87;
+	border-radius:5px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:11px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+}
+
+.button-gray:hover {
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+	background-color:#6c7c7c;
+}
+
+.button-gray:active {
+	position:relative;
+	top:1px;
+}
