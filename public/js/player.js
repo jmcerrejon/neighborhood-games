@@ -7,6 +7,8 @@ const player = {
 let isReady = false
 
 $(() => {
+	document.title = 'Team: ' + player.team;
+
 	socket.emit('new_player', player)
 
 	socket.on('get_players', players => {
