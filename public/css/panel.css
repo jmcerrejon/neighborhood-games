@@ -24,6 +24,18 @@ main {
 	overflow: hidden;
 }
 
+#chat {
+	background: rgb(245, 245, 245);
+	height: 30px;
+	width: calc(100% - 20px);
+	max-width: 620px;
+	border: 1px solid gray;
+	margin-bottom: 10px;
+	padding: 10px;
+	overflow-y: auto;
+	overflow-y: scroll;
+}
+
 #content {
 	margin-left: 230px;
 	/* Same as 'nav' width */

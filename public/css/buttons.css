@@ -28,9 +28,10 @@
 	top:1px;
 }
 
-.button-green:hover {
+.button-green {
 	height: 200px;
 	width: calc(95% - 20px);
+	max-width: 590px;
 	box-shadow:inset 0px 1px 3px 0px #3dc21b;
 	background:linear-gradient(to bottom, #44c767 5%, #48991d 100%);
 	background-color:#44c767;
