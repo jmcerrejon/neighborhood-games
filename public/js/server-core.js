@@ -31,14 +31,28 @@ $('#button').click(event => {
 	state.isReady = !state.isReady
 	socket.emit('button_ready', state.isReady)
 	setButtonColor('button', (state.isReady) ? 'button-gray' : 'button-yellow')
+	if (state.isReady) {
+		socket.emit('new_msg', {
+			name: 'Moderator',
+			content: 'Answer the question!'
+		})
+	}
 })
 
 const setAnswerMsg = player => {
-	setMessage(`Is it the answer <a class="button-green-min" href="#" onclick="validAnswer(true, \'${player.id}\')">CORRECT</a> or <a class="button-red-min" href="#" onclick="validAnswer(false, \'${player.id}\')">INCORRECT</a>?`)
+	setMessage(`Is it the answer <a class="button-green-min" href="#" onclick="checkAnswer(true, \'${player.id}\')">CORRECT</a> or <a class="button-red-min" href="#" onclick="checkAnswer(false, \'${player.id}\')">INCORRECT</a>?`)
 }
 
-const validAnswer = (isValid, playerId) => {
+const checkAnswer = (isValid, playerId) => {
 	const strValid = (isValid) ? 'Correct!' : 'INcorrect'
-	setMessage(`Player ${playerId} answer is... ${strValid}`)
-	// TODO Emit msg
+	const msg = `The answer is... ${strValid}` 
+	setMessage(msg)
+	socket.emit('new_msg', {
+		name: 'Moderator',
+		content: msg
+	})
+	socket.emit('check_answer', {
+		isValid,
+		playerId
+	})
 }

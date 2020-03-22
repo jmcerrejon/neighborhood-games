@@ -34,7 +34,10 @@ io.on('connection', socket => {
 		console.log('Player:', player)
 		io.sockets.emit('change_button', false)
 		io.sockets.emit('team_clicked', player)
-		// TODO set green button on user who need to answer
+	})
+
+	socket.on('check_answer', ({isValid, playerId}) => {
+		io.sockets.emit('change_button', !isValid)
 	})
 })
 

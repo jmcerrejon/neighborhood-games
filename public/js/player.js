@@ -45,6 +45,10 @@ socket.on('team_clicked', playerWhoAnswer => {
 	}
 })
 
+socket.on('check_answer', ({isValid, playerId}) => {
+	console.log({isValid}, {playerId})
+})
+
 const special = str => {
 	return (str.replace(/</gi, '&lt;')).replace(/>/gi, '&gt;')
 }
