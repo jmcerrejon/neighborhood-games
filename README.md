@@ -2,6 +2,13 @@
 
 ![image](./images/capture_v0.2.png)
 
+<p align="center">
+	<a href='https://ko-fi.com/A838QJC' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi2.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+	<a href="http://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="Standard - JavaScript Style Guide"></a>
+	<a href="https://github.com/jmcerrejon/neighborhood-games/blob/master/LICENSE"><img src="https://img.shields.io/github/license/jmcerrejon/neighborhood-games" alt="npm version"></a>
+	<a href="https://twitter.com/ulysess10"><img src="https://img.shields.io/twitter/follow/ulysess10?style=social" alt="Follow me on Twitter!"></a>
+</p>
+
 ## Description
 
 Just a board to manage playing with your neighbours/family/friends using sockets.
@@ -46,7 +53,7 @@ The idea is simple:
 
 ## TODO
 
-🔓 First version.
+✅ First version.
 
 🔒 Refactor.
 
@@ -67,6 +74,8 @@ The idea is simple:
 * You can use *DEBUG*: ``` "start-dev": "DEBUG=* nodemon app.js" ```
 
 * On Chrome console command: ``` localStorage.debug = '*'; ```
+
+* The goal of the project is to practice Javascript and new JS features. This is my second app using *socket.io*. 
 
 ## Author
 
