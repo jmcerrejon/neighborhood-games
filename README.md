@@ -4,9 +4,15 @@
 
 ## Description
 
-Just a board to manage playing with your neighbours/family/friends.
+Just a board to manage playing with your neighbours/family/friends using sockets.
 
 **NOTE:** It's just a tool. No games came inside!.
+
+## Features
+
+* Integrated chat between neighbours.
+
+* When moderator make a question, click the yellow button ASAP and answer to win points.
 
 ⚠️ **WORK IN PROGRESS**
 
@@ -36,25 +42,25 @@ The idea is simple:
 
 * Use a microphone and start a quiz game.
 
-* Use a speaker to put any song. You can group songs by section (tv shows, movies, pop) and players must to press the button and answer as faster as they can.
+* Use a speaker to put any song. You can group songs by section (tv shows, movies, pop) and players must to press the button and answer as fast as they can.
 
 ## TODO
 
-[ ] First version.
+🔓 First version.
 
-[ ] Refactor.
+🔒 Refactor.
 
-[ ] Score.
+🔒 Score.
 
-[ ] Remove jQuery.
+🔒 Remove jQuery.
 
-[ ] Localization according with the user web browser.
+🔒 Localization according with the user web browser.
 
-[ ] Save data state.
+🔒 Save data state.
 
-[ ] Multi rooms.
+🔒 Multi rooms.
 
-[ ] Test.
+🔒 Test.
 
 ## DEV
 
