@@ -29,6 +29,13 @@ io.on('connection', socket => {
 	socket.on('button_ready', isReady => {
 		io.sockets.emit('change_button', isReady)
 	})
+
+	socket.on('button_pressed', player => {
+		console.log('Player:', player)
+		io.sockets.emit('change_button', false)
+		io.sockets.emit('team_clicked', player)
+		// TODO set green button on user who need to answer
+	})
 })
 
 app.use(express.static(__dirname + '/public'))

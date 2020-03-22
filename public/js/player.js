@@ -4,17 +4,16 @@ const player = {
 	team: getUrlParam('team', 'Harkonen House'),
 	room: getUrlParam('room', 'secondary')
 }
+let isReady = false
 
 $(() => {
 	socket.emit('new_player', player)
 
 	socket.on('get_players', players => {
-		const team = getUrlParam('team', 'Harkonen House')
-		const room = getUrlParam('room', 'secondary')
-
+		player.id = socket.id
 		$('#chat')
 			.empty()
-			.append(`<h3>Welcome ${team} to room ${room}!</h3>`)
+			.append(`<h3>Welcome ${player.team} to room ${player.room}!</h3>`)
 	})
 })
 
@@ -31,14 +30,19 @@ $('form').on('submit', event => {
 })
 
 socket.on('spread_msg', msg => {
-	$('#chat')
-		.append(`<b>${special(msg.name)}</b> ${special(msg.content)}<br>`)
-	const divChat = $('#chat');
-	divChat.scrollTop(divChat.prop("scrollHeight"));
+	setMessage(`<b>${special(msg.name)}</b> ${special(msg.content)}`)
 })
 
-socket.on('change_button', isReady => {
-	setButtonColor('button', (isReady) ? 'button-yellow' : 'button-gray')
+socket.on('change_button', isReadyFromServer => {
+	isReady = isReadyFromServer
+	setButtonColor('button', (isReadyFromServer) ? 'button-yellow' : 'button-gray')
+})
+
+socket.on('team_clicked', playerWhoAnswer => {
+	setMessage(`<b>${playerWhoAnswer.team}</b> clicked the button!`)
+	if (player.id === playerWhoAnswer.id) {
+		setButtonColor('button', 'button-green')
+	}
 })
 
 const special = str => {
@@ -46,5 +50,8 @@ const special = str => {
 }
 
 $('#button').click(event => {
-	socket.emit('button_pressed', player)
+	if (isReady) {
+		// TODO Counter
+		socket.emit('button_pressed', player)
+	}
 })
