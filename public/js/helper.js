@@ -5,20 +5,28 @@ const getUrlParam = (parameter, defaultvalue = 'default') => {
 
 const getUrlVars = () => {
     let vars = []
-    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m, key, value) => {
         vars[key] = decodeURIComponent(value).replace(/\+/g, ' ')
     })
 
     return vars
 }
 
-const setButtonColor = (divId, color) => {
-	document.getElementById(divId).className = color
+const setButtonColor = color => {
+	document.getElementById('button').className = color
 }
 
 const setMessage = msg => {
 	$('#chat')
 		.append(`${msg}</br>`)
 	const divChat = $('#chat')
-	divChat.scrollTop(divChat.prop("scrollHeight"))
+	divChat.scrollTop(divChat.prop('scrollHeight'))
+}
+
+const special = str => {
+	return (str.replace(/</gi, '&lt;')).replace(/>/gi, '&gt;')
+}
+
+const setTitle = str => {
+	document.title = str;
 }
