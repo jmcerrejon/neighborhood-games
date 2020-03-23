@@ -7,10 +7,9 @@ window.onload = () => {
 	socket.emit('get_players')
 
 	socket.on('get_players', players => {
-		console.dir(players);
 		$('#players').empty()
 		players.map(({player}) => {
-			$('#players').append(`<li>· ${player.team}</li>`)
+			$('#players').append(`<li id="${player.id}">· ${player.team}</li>`)
 			setMessage(`New Player!: ${player.team}`)
 		})
 	})
