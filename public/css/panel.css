@@ -6,8 +6,6 @@ body {
 }
 
 main {
-	padding-bottom: 10010px;
-	margin-bottom: -10000px;
 	float: left;
 	width: 100%;
 }
@@ -16,7 +14,7 @@ main {
 	float: left;
 	width: 230px;
 	margin-left: -100%;
-	padding-bottom: 10010px;
+	padding-bottom: calc(60%);
 	background: #eee;
 }
 
@@ -26,7 +24,7 @@ main {
 
 #chat {
 	background: rgb(245, 245, 245);
-	height: 30px;
+	height: 85px;
 	width: calc(100% - 20px);
 	max-width: 620px;
 	border: 1px solid gray;
