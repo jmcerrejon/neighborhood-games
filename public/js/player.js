@@ -11,11 +11,11 @@ $(() => {
 
 	socket.emit('new_player', player)
 
-	socket.on('get_players', players => {
+	socket.on('set_player', newPlayer => {
 		player.id = socket.id
 		$('#chat')
 			.empty()
-			.append(`<h3>Welcome ${player.team} to room ${player.room}!</h3>`)
+			.append(`<h3>Welcome ${newPlayer.team} to room ${newPlayer.room}!</h3>`)
 	})
 })
 
@@ -32,7 +32,7 @@ $('form').on('submit', event => {
 })
 
 socket.on('spread_msg', msg => {
-	setMessage(`<b>${special(msg.name)}</b> ${special(msg.content)}`)
+	setMessage(`<b>${special(msg.name)}</b> ${msg.content}`)
 })
 
 socket.on('change_button', isReadyFromServer => {
