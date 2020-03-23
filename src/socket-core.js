@@ -12,7 +12,7 @@ module.exports = (socket, io) => {
 	const newPlayer = player => {
 		player.id = socket.id
 		players.addPlayer(player)
-		console.log('New player:', JSON.stringify(player, null, 2))
+		io.sockets.emit('get_player', player)
 		io.sockets.emit('get_players', players.getAvailablePlayers())
 	}
 
