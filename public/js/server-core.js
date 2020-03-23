@@ -24,7 +24,7 @@ $(() => {
 		setAnswerMsg(playerWhoAnswer)
 	})
 
-	setMessage('<b>Welcome to the Panel!</b>')
+	setMessage('<h4>Welcome to the Panel!. Waiting for the teams...</h4>')
 })
 
 $('#button').click(event => {
@@ -40,12 +40,14 @@ $('#button').click(event => {
 })
 
 const setAnswerMsg = player => {
-	setMessage(`Is it the answer <a class="button-green-min" href="#" onclick="checkAnswer(true, \'${player.id}\')">CORRECT</a> or <a class="button-red-min" href="#" onclick="checkAnswer(false, \'${player.id}\')">INCORRECT</a>?`)
+	setMessage(`<span class="spAnswer">Is the answer <a class="button-green-min" href="#" onclick="checkAnswer(true, \'${player.id}\')">CORRECT</a> or <a class="button-red-min" href="#" onclick="checkAnswer(false, \'${player.id}\')">INCORRECT</a>?</span>`)
 }
 
 const checkAnswer = (isValid, playerId) => {
-	const strValid = (isValid) ? 'Correct!' : 'INcorrect'
-	const msg = `The answer is... ${strValid}` 
+	$('.spAnswer').remove()
+	const strValid = (isValid) ? 'CORRECT' : 'INCORRECT'
+	const classValid = (isValid) ? 'button-green-min' : 'button-red-min'
+	const msg = `The answer is... <span class="${classValid}">${strValid}</span>`
 	setMessage(msg)
 	socket.emit('new_msg', {
 		name: 'Moderator',
@@ -56,3 +58,8 @@ const checkAnswer = (isValid, playerId) => {
 		playerId
 	})
 }
+
+socket.on('spread_server_msg', msg => {
+	console.log('entro');
+	setMessage(msg.content)
+})
