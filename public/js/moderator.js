@@ -3,10 +3,11 @@ let state = {
 	isReady: false
 }
 
-$(() => {
+window.onload = () => {
 	socket.emit('get_players')
 
 	socket.on('get_players', players => {
+		console.dir(players);
 		$('#players').empty()
 		players.map(({player}) => {
 			$('#players').append(`<li>· ${player.team}</li>`)
@@ -16,7 +17,7 @@ $(() => {
 
 	socket.on('change_button', isReadyFromServer => {
 		state.isReady = isReadyFromServer
-		setButtonColor('button', (!isReadyFromServer) ? 'button-yellow' : 'button-gray')
+		setButtonColor((!isReadyFromServer) ? 'button-yellow' : 'button-gray')
 	})
 
 	socket.on('team_clicked', playerWhoAnswer => {
@@ -25,12 +26,12 @@ $(() => {
 	})
 
 	setMessage('<h4>Welcome to the Panel!. Waiting for the teams...</h4>')
-})
+}
 
 $('#button').click(event => {
 	state.isReady = !state.isReady
 	socket.emit('button_ready', state.isReady)
-	setButtonColor('button', (state.isReady) ? 'button-gray' : 'button-yellow')
+	setButtonColor((state.isReady) ? 'button-gray' : 'button-yellow')
 	if (state.isReady) {
 		socket.emit('new_msg', {
 			name: 'Moderator',

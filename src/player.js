@@ -1,5 +1,3 @@
-// TODO Transform module into a Class
-
 module.exports = () => {
  	const players = new Map()
 

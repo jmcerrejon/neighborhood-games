@@ -1,23 +1,50 @@
 const socket = io()
-
-const player = {
+let player = {
 	team: getUrlParam('team', 'Harkonen House'),
 	room: getUrlParam('room', 'secondary')
 }
-let isReady = false
+let state = {
+	isReady: false
+}
 
-$(() => {
-	document.title = 'Team: ' + player.team;
+window.onload = () => {
+	setTitle('Team: ' + player.team)
 
 	socket.emit('new_player', player)
 
-	socket.on('set_player', newPlayer => {
-		player.id = socket.id
+	socket.on('get_players', newPlayer => {
+		console.dir(newPlayer.player)
+		const team = newPlayer.player
+		player.id = team.id
 		$('#chat')
 			.empty()
-			.append(`<h3>Welcome ${newPlayer.team} to room ${newPlayer.room}!</h3>`)
+			.append(`<h3>Welcome ${team.team} to room ${team.room}!</h3>`)
 	})
+}
+
+socket.on('spread_msg', msg => {
+	setMessage(`<b>${special(msg.name)}</b> ${msg.content}`)
 })
+
+socket.on('change_button', isReadyFromServer => {
+	state.isReady = isReadyFromServer
+	setButtonColor((isReadyFromServer) ? 'button-yellow' : 'button-gray')
+})
+
+socket.on('team_clicked', playerWhoAnswer => {
+	setMessage(`<b>${playerWhoAnswer.team}</b> clicked the button!`)
+	if (player.id === playerWhoAnswer.id) {
+		setButtonColor('button-green')
+	}
+})
+
+socket.on('check_answer', ({isValid, playerId}) => {
+	console.log({isValid}, {playerId})
+})
+
+/**
+ * Events
+ */
 
 $('form').on('submit', event => {
 	event.preventDefault()
@@ -31,32 +58,8 @@ $('form').on('submit', event => {
 	}
 })
 
-socket.on('spread_msg', msg => {
-	setMessage(`<b>${special(msg.name)}</b> ${msg.content}`)
-})
-
-socket.on('change_button', isReadyFromServer => {
-	isReady = isReadyFromServer
-	setButtonColor('button', (isReadyFromServer) ? 'button-yellow' : 'button-gray')
-})
-
-socket.on('team_clicked', playerWhoAnswer => {
-	setMessage(`<b>${playerWhoAnswer.team}</b> clicked the button!`)
-	if (player.id === playerWhoAnswer.id) {
-		setButtonColor('button', 'button-green')
-	}
-})
-
-socket.on('check_answer', ({isValid, playerId}) => {
-	console.log({isValid}, {playerId})
-})
-
-const special = str => {
-	return (str.replace(/</gi, '&lt;')).replace(/>/gi, '&gt;')
-}
-
 $('#button').click(event => {
-	if (isReady) {
+	if (state.isReady) {
 		// TODO Counter
 		socket.emit('button_pressed', player)
 	}
