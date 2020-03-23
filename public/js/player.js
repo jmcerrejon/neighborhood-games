@@ -12,13 +12,13 @@ window.onload = () => {
 
 	socket.emit('new_player', player)
 
-	socket.on('get_players', newPlayer => {
-		console.dir(newPlayer.player)
-		const team = newPlayer.player
-		player.id = team.id
+	socket.on('get_player', newPlayer => {
+		// FIXME Handle id 1
+		player.id = newPlayer.id
+		console.log(JSON.stringify(newPlayer, null, 2));
 		$('#chat')
 			.empty()
-			.append(`<h3>Welcome ${team.team} to room ${team.room}!</h3>`)
+			.append(`<h3>Welcome ${player.team} to room ${player.room}!</h3>`)
 	})
 }
 
@@ -33,7 +33,8 @@ socket.on('change_button', isReadyFromServer => {
 
 socket.on('team_clicked', playerWhoAnswer => {
 	setMessage(`<b>${playerWhoAnswer.team}</b> clicked the button!`)
-	if (player.id === playerWhoAnswer.id) {
+	// FIXME Handle id 2
+	if (player.team === playerWhoAnswer.team) {
 		setButtonColor('button-green')
 	}
 })
