@@ -18,9 +18,7 @@ Just a board to manage playing with your neighbours/family/friends using sockets
 
 * Integrated chat between neighbours.
 
-* When moderator make a question, click the yellow button ASAP and answer to win points.
-
-⚠️ **WORK IN PROGRESS**
+* When moderator make a question, players must to click the yellow button ASAP and answer to win points.
 
 ## Installation
 
@@ -53,8 +51,6 @@ The idea is simple:
 ## TODO
 
 ✅ First version.
-
-❎ Refactor.
 
 ❎ Score.
 
