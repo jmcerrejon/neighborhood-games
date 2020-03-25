@@ -35,12 +35,6 @@ io.on('connection', socket => {
 app.use(express.static(__dirname + '/public'))
 
 const server = http.listen(port, err => {
-	if (env.error) {
-		throw env.error
-	}
-
-	if (err) {
-		throw err
-	}
+	if (err) throw err
 	console.log(`Server ready at http://127.0.0.1:${port}`)
 })
