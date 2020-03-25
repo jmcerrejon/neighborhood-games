@@ -1,43 +1,54 @@
-const socket = io()
+const socket = io({
+	forceNew: false
+})
 let state = {
 	isReady: false
 }
 
-window.onload = () => {
-	socket.emit('get_players')
+init()
 
-	socket.on('get_players', players => {
-		$('#players').empty()
-		players.map(({player}) => {
-			$('#players').append(`<li id="${player.id}">· ${player.team}</li>`)
-			setMessage(`New Player!: ${player.team}`)
-		})
+/**
+ * Socket stuff
+ */
+
+socket.on('get_players', players => {
+	$('#players').empty()
+	players.map(({player}) => {
+		$('#players').append(`<li id="${player.id}">· ${player.team}</li>`)
+		setMessage(`New Player!: ${player.team}`)
 	})
+})
 
-	socket.on('change_button', isReadyFromServer => {
-		state.isReady = isReadyFromServer
-		setButtonColor((!isReadyFromServer) ? 'button-yellow' : 'button-gray')
-	})
+socket.on('change_button', isReadyFromServer => {
+	state.isReady = isReadyFromServer
+	setButtonColor((!isReadyFromServer) ? 'button-yellow' : 'button-gray')
+})
 
-	socket.on('team_clicked', playerWhoAnswer => {
-		setMessage(`<b>${playerWhoAnswer.team}</b> clicked the button!`)
-		setAnswerMsg(playerWhoAnswer)
-	})
+socket.on('team_clicked', playerWhoAnswer => {
+	setMessage(`<b>${playerWhoAnswer.team}</b> clicked the button!`)
+	setAnswerMsg(playerWhoAnswer)
+})
 
-	setMessage('<h4>Welcome to the Panel!. Waiting for the teams...</h4>')
-}
+socket.on('spread_server_msg', msg => {
+	setMessage(msg.content)
+})
 
-$('#button').click(event => {
+/**
+ * Events
+ */
+
+$('#button').click(() => {
 	state.isReady = !state.isReady
 	socket.emit('button_ready', state.isReady)
 	setButtonColor((state.isReady) ? 'button-gray' : 'button-yellow')
 	if (state.isReady) {
-		socket.emit('new_msg', {
-			name: 'Moderator',
-			content: 'Answer the question!'
-		})
+		sendMsgToAllPlayers('Answer the question!')
 	}
 })
+
+/**
+ * Functions
+ */
 
 const setAnswerMsg = player => {
 	setMessage(`<span class="spAnswer">Is the answer <a class="button-green-min" href="#" onclick="checkAnswer(true, \'${player.id}\')">CORRECT</a> or <a class="button-red-min" href="#" onclick="checkAnswer(false, \'${player.id}\')">INCORRECT</a>?</span>`)
@@ -48,18 +59,24 @@ const checkAnswer = (isValid, playerId) => {
 	const strValid = (isValid) ? 'CORRECT' : 'INCORRECT'
 	const classValid = (isValid) ? 'button-green-min' : 'button-red-min'
 	const msg = `The answer is... <span class="${classValid}">${strValid}</span>`
+	
 	setMessage(msg)
-	socket.emit('new_msg', {
-		name: 'Moderator',
-		content: msg
-	})
+	sendMsgToAllPlayers(msg)
+	
 	socket.emit('check_answer', {
 		isValid,
 		playerId
 	})
 }
 
-socket.on('spread_server_msg', msg => {
-	console.log('entro');
-	setMessage(msg.content)
-})
+const sendMsgToAllPlayers = content => {
+	socket.emit('new_msg', {
+		name: 'Moderator',
+		content
+	})
+}
+
+function init() {
+	setMessage('<h4>Welcome to the Panel!. Waiting for the teams...</h4>')
+	socket.emit('get_players')
+}
