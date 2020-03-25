@@ -1,8 +1,10 @@
+const env = require('dotenv').config()
 const express = require('express')
 const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const socketCore = require('./src/socket-core')
+const port = process.env.APP_PORT || 80
 
 io.on('connection', socket => {
 	const {
@@ -32,9 +34,13 @@ io.on('connection', socket => {
 
 app.use(express.static(__dirname + '/public'))
 
-const server = http.listen(8080, err => {
+const server = http.listen(port, err => {
+	if (env.error) {
+		throw env.error
+	}
+
 	if (err) {
 		throw err
 	}
-	console.log("Server ready at http://127.0.0.1:8080")
+	console.log(`Server ready at http://127.0.0.1:${port}`)
 })
