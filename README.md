@@ -90,4 +90,6 @@ The idea is simple:
 
 * https://www.bestcssbuttongenerator.com/
 
+* Favicon thks to http://transparent-favicon.info/
+
 Dev with ♥️ using [Node](https://nodejs.org/), [Express](https://expressjs.com/) and [Socket.io](https://socket.io/).
