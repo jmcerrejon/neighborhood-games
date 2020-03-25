@@ -86,6 +86,8 @@ The idea is simple:
 
 ## Resources
 
+* https://socket.io/
+
 * https://www.bestcssbuttongenerator.com/
 
 Dev with ♥️ using [Node](https://nodejs.org/), [Express](https://expressjs.com/) and [Socket.io](https://socket.io/).

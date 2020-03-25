@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
-const socketReq = require('./src/socket-core')
+const socketCore = require('./src/socket-core')
 
 io.on('connection', socket => {
 	const {
@@ -13,7 +13,7 @@ io.on('connection', socket => {
 		buttonReady,
 		buttonPressed,
 		checkAnswer
-	} = socketReq(socket, io)
+	} = socketCore(socket, io)
 
 	socket.on('new_msg', newMsg)
 
