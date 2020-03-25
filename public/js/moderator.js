@@ -5,8 +5,10 @@ let state = {
 	isReady: false
 }
 
-init()
-
+window.onload = () => {
+	setMessage('<h4>Welcome to the Panel!. Waiting for the teams...</h4>')
+	socket.emit('get_players')
+}
 /**
  * Socket stuff
  */
@@ -74,9 +76,4 @@ const sendMsgToAllPlayers = content => {
 		name: 'Moderator',
 		content
 	})
-}
-
-function init() {
-	setMessage('<h4>Welcome to the Panel!. Waiting for the teams...</h4>')
-	socket.emit('get_players')
 }
