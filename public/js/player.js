@@ -1,4 +1,6 @@
-const socket = io()
+const socket = io({
+	forceNew: false
+})
 let player = {
 	team: getUrlParam('team', 'Harkonen House'),
 	room: getUrlParam('room', 'secondary')
