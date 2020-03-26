@@ -1,6 +1,6 @@
 # Neighborhood games
 
-![image](./images/capture_v0.3.png)
+![image](./images/capture_v.1.0.png)
 
 <p align="center">
 	<a href='https://ko-fi.com/A838QJC' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi2.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
@@ -55,6 +55,8 @@ The idea is simple:
 ❎ Score.
 
 ❎ Remove jQuery.
+
+❎ Add icons.
 
 ❎ Redesign the UI using some cool lib.
 
