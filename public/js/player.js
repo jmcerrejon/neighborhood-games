@@ -6,8 +6,13 @@ let player = {
 	room: getUrlParam('room', 'secondary')
 }
 let state = {
-	isReady: false
+	isReady: false,
+	waitUntilNextQuestion: false
 }
+
+/**
+ * Functions
+ */
 
 window.onload = () => {
 	setTitle('Team: ' + player.team)
@@ -16,22 +21,38 @@ window.onload = () => {
 
 	socket.on('get_player', newPlayer => {
 		// FIXME Handle id 1
-		player.id = newPlayer.id
-		console.log(JSON.stringify(newPlayer, null, 2));
+		if (newPlayer.team == player.team) {
+			player.id = newPlayer.id
+		}
 		$('#chat')
 			.empty()
 			.append(`<h3>Welcome ${player.team} to room ${player.room}!</h3>`)
 	})
 }
 
+const changeButton = ({isReady, newQuestion = false}) => {
+	if (newQuestion) {
+		state = {
+			isReady: false,
+			waitUntilNextQuestion: false
+		}
+	}
+	if (state.waitUntilNextQuestion) {
+		return
+	}
+	state.isReady = isReady
+	setButtonColor((isReady) ? 'button-yellow' : 'button-gray')
+}
+
+/**
+ * Socket stuff
+ */
+
 socket.on('spread_msg', msg => {
 	setMessage(`<b>${special(msg.name)}</b> ${msg.content}`)
 })
 
-socket.on('change_button', isReadyFromServer => {
-	state.isReady = isReadyFromServer
-	setButtonColor((isReadyFromServer) ? 'button-yellow' : 'button-gray')
-})
+socket.on('change_button', changeButton)
 
 socket.on('team_clicked', playerWhoAnswer => {
 	setMessage(`<b>${playerWhoAnswer.team}</b> clicked the button!`)
@@ -42,7 +63,16 @@ socket.on('team_clicked', playerWhoAnswer => {
 })
 
 socket.on('check_answer', ({isValid, playerId}) => {
-	console.log({isValid}, {playerId})
+	if ((player.id === playerId) && (isValid === false)) {
+		state.isReady = false
+		state.waitUntilNextQuestion = true
+		setButtonColor('button-red')
+		return
+	}
+
+	changeButton({
+		isReady: !isValid
+	})
 })
 
 /**

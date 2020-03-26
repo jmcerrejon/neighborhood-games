@@ -22,16 +22,22 @@ module.exports = (socket, io) => {
 	}
 
 	const buttonReady = isReady => {
-		io.sockets.emit('change_button', isReady)
+		const newQuestion = true
+		io.sockets.emit('change_button', {
+			isReady,
+			newQuestion
+		})
 	}
 
 	const buttonPressed = player => {
-		io.sockets.emit('change_button', false)
+		io.sockets.emit('change_button', {
+			isReady: false
+		})
 		io.sockets.emit('team_clicked', player)
 	}
 
-	const checkAnswer = ({isValid}) => {
-		io.sockets.emit('change_button', !isValid)
+	const checkAnswer = answer => {
+		io.sockets.emit('check_answer', answer)
 	}
 
 	return {
