@@ -15,19 +15,15 @@ let state = {
  */
 
 window.onload = () => {
-	setTitle('Team: ' + player.team)
-
 	socket.emit('new_player', player)
-
 	socket.on('get_player', newPlayer => {
 		// FIXME Handle id 1
 		if (newPlayer.team == player.team) {
 			player.id = newPlayer.id
 		}
-		$('#chat')
-			.empty()
-			.append(`<h3>Welcome ${player.team} to room ${player.room}!</h3>`)
+		setWelcomeMessage()
 	})
+	init()
 }
 
 const changeButton = ({isReady, newQuestion = false}) => {
@@ -44,6 +40,18 @@ const changeButton = ({isReady, newQuestion = false}) => {
 	setButtonColor((isReady) ? 'button-yellow' : 'button-gray')
 }
 
+const setWelcomeMessage = () => {
+	const msg = getTranslation('player-welcome', [player.team, player.room])
+	$('#chat')
+		.empty()
+		.append(msg)
+}
+
+const init = () => {
+	setTitle('Team: ' + player.team)
+	document.getElementById('content').placeholder = getTranslation('player-input-placeholder')
+}
+
 /**
  * Socket stuff
  */
@@ -55,7 +63,8 @@ socket.on('spread_msg', msg => {
 socket.on('change_button', changeButton)
 
 socket.on('team_clicked', playerWhoAnswer => {
-	setMessage(`<b>${playerWhoAnswer.team}</b> clicked the button!`)
+	const msg = getTranslation('player-click-button', [playerWhoAnswer.team])
+	setMessage(msg)
 	// FIXME Handle id 2
 	if (player.team === playerWhoAnswer.team) {
 		setButtonColor('button-green')

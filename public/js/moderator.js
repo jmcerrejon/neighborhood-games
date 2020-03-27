@@ -10,19 +10,21 @@ let state = {
  */
 
 window.onload = () => {
-	setMessage('<h4>Welcome to the Panel!. Waiting for the teams...</h4>')
+	const msg = getTranslation('moderator-welcome')
+	setMessage(msg)
 	socket.emit('get_players')
 }
 
 const setAnswerMsg = player => {
-	setMessage(`<span class="spAnswer">Is the answer <a class="button-green-min" href="#" onclick="checkAnswer(true, \'${player.id}\')">CORRECT</a> or <a class="button-red-min" href="#" onclick="checkAnswer(false, \'${player.id}\')">INCORRECT</a>?</span>`)
+	const msg = getTranslation('moderator-answer', [player.id, player.id])
+	setMessage(msg)
 }
 
 const checkAnswer = (isValid, playerId) => {
 	$('.spAnswer').remove()
-	const strValid = (isValid) ? 'CORRECT' : 'INCORRECT'
+	const strValid = (isValid) ? getTranslation('correct') : getTranslation('incorrect')
 	const classValid = (isValid) ? 'button-green-min' : 'button-red-min'
-	const msg = `The answer is... <span class="${classValid}">${strValid}</span>`
+	const msg = getTranslation('moderator-answer-is', [classValid, strValid])
 	
 	setMessage(msg)
 	sendMsgToAllPlayers(msg)
@@ -49,7 +51,8 @@ $('#button').click(() => {
 	socket.emit('button_ready', state.isReady)
 	setButtonColor((state.isReady) ? 'button-gray' : 'button-yellow')
 	if (state.isReady) {
-		sendMsgToAllPlayers('Answer the question!')
+		const msg = getTranslation('moderator-answer-message')
+		sendMsgToAllPlayers(msg)
 	}
 })
 
@@ -60,8 +63,9 @@ $('#button').click(() => {
 socket.on('get_players', players => {
 	$('#players').empty()
 	players.map(({player}) => {
+		const msg = getTranslation('moderator-player-new', [player.team])
 		$('#players').append(`<li id="${player.id}">· ${player.team}</li>`)
-		setMessage(`New Player!: ${player.team}`)
+		setMessage(msg)
 	})
 })
 
@@ -71,7 +75,8 @@ socket.on('change_button', ({isReady}) => {
 })
 
 socket.on('team_clicked', playerWhoAnswer => {
-	setMessage(`<b>${playerWhoAnswer.team}</b> clicked the button!`)
+	const msg = getTranslation('player-click-button', [playerWhoAnswer.team])
+	setMessage(msg)
 	setAnswerMsg(playerWhoAnswer)
 })
 
