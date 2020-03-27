@@ -1,0 +1,18 @@
+{
+	"title-login": "Acceso",
+	"login-content": "Rellena los datos para entrar en el juego",
+	"correct": "CORRECTA",
+	"incorrect": "INCORRECTA",
+	"team-name": "Nombre del equipo",
+	"room-name": "Nombre de la sala",
+	"player-welcome": "<h3>¡Bienvenido $0 a la sala $0!</h3>",
+	"player-input-placeholder": "Escribe un mensaje y pulsa RETURN",
+	"player-click-button": "¡<b>$0</b> pulsó primero!",
+	"moderator-welcome": "<h4>¡Bienvenido al Panel de moderador!. Esperando a los equipos...</h4>",
+	"moderator-sidebar-players": "Jugadores",
+	"moderator-panel": "Panel del moderador",
+	"moderator-player-new": "¡Nuevo equipo $0!",
+	"moderator-answer-message": "¡Responde a la pregunta!",
+	"moderator-answer-is": "La respuesta es... <span class=\"$0\">$0</span>",
+	"moderator-answer": "<span class=\"spAnswer\">¿Es la respuesta <a class=\"button-green-min\" href=\"#\" onclick=\"checkAnswer(true, '$0')\">CORRECTA</a> o <a class=\"button-red-min\" href=\"#\" onclick=\"checkAnswer(false, '$0')\">INCORRECTA</a>?</span>"
+}

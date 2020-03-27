@@ -1,0 +1,18 @@
+{
+	"title-login": "Login",
+	"login-content": "Fill the form to enter the game",
+	"correct": "CORRECT",
+	"incorrect": "INCORRECT",
+	"team-name": "Team name",
+	"room-name": "Room name",
+	"player-welcome": "<h3>Welcome $0 to room $0!</h3>",
+	"player-input-placeholder": "Enter a message and press RETURN",
+	"player-click-button": "<b>$0</b> clicked the button first!",
+	"moderator-welcome": "<h4>Welcome to the Panel!. Waiting for the teams...</h4>",
+	"sidebar-moderator-players": "Players",
+	"moderator-panel": "Moderator Panel",
+	"moderator-player-new": "New team $0!",
+	"moderator-answer-message": "Answer the question!",
+	"moderator-answer-is": "The answer is... <span class=\"$0\">$0</span>",
+	"moderator-answer": "<span class=\"spAnswer\">Is the answer <a class=\"button-green-min\" href=\"#\" onclick=\"checkAnswer(true, '$0')\">CORRECT</a> or <a class=\"button-red-min\" href=\"#\" onclick=\"checkAnswer(false, '$0')\">INCORRECT</a>?</span>"
+}
