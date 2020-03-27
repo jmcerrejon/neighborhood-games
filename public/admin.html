@@ -7,8 +7,10 @@
 	<link rel="icon" href="favicon.ico" type="image/ico" sizes="16x16">
 	<link rel="stylesheet" href="/css/panel.css">
 	<link rel="stylesheet" href="/css/buttons.css">
+	<script defer src="/js/trans-helper.js" type="module"></script>
 	<script defer src="//code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 	<script defer src="/socket.io/socket.io.js"></script>
+	<script defer src="/js/trans-helper.js" type="module"></script>
 	<script defer src="/js/helper.js"></script>
 	<script defer src="/js/moderator.js"></script>
 </head>
@@ -17,7 +19,7 @@
 		<main>
 			<div id="content">
 				<div class="innertube">
-					<h1>Moderator Panel</h1>
+					<h1 data-i18n="moderator-panel">Moderator Panel</h1>
 					<div id="chat"></div>
 					<br>
 					<div id="button" class="button-yellow"></div>
@@ -26,7 +28,7 @@
 		</main>
 		<nav id="nav">
 			<div class="innertube">
-				<h3>Players</h3>
+				<h3 data-i18n="moderator-sidebar-players">Players</h3>
 				<ul id="players"></ul>
 			</div>
 		</nav>

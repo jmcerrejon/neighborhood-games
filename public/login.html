@@ -5,17 +5,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login</title>
 	<link rel="icon" href="favicon.ico" type="image/ico" sizes="16x16">
+	<script defer src="/js/trans-helper.js" type="module"></script>
 </head>
 <body>
-	<h1>Login</h1>
-	<h2>Fill the form to enter the game</h2>
+	<h1 data-i18n="title-login">Login</h1>
+	<h2 data-i18n="login-content">Fill the form to enter the game</h2>
 	<form id="form" action="/index.html">
-		<label for="team">Team name</label>
+		<label data-i18n="team-name" for="team">Team name</label>
 		<input type="text" name="team" id="team" value="Atreides House"><br>
-		<label for="room">Room name</label>
+		<label data-i18n="room-name" for="room">Room name</label>
 		<input type="text" name="room" id="room" value="main"><br><br>
 		<input type="submit" value="Acceder"></button>
 	</form>
+	<!-- TODO check if team name is available -->
 </body>
-<!-- TODO check if team name is available -->
 </html>
