@@ -30,3 +30,19 @@ const special = str => {
 const setTitle = str => {
 	document.title = str;
 }
+
+const getTranslation = (element, items2Replace = []) => {
+	const json = JSON.parse(localStorage.getItem('translations'))
+	// TODO Refactor
+	const replaceElements = items => {
+		const str2Replace = '$0'
+		let msg = json[element]
+		items.forEach(item => {
+			msg = msg.replace(str2Replace, item)
+		})
+
+		return msg
+	}
+
+	return (items2Replace.length === 0) ? json[element] : replaceElements(items2Replace)
+}
