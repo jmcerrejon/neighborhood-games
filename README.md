@@ -52,6 +52,8 @@ The idea is simple:
 
 ✅ First version.
 
+✅ Localization according with the user web browser.
+
 ❎ Score.
 
 ❎ Remove jQuery.
@@ -59,8 +61,6 @@ The idea is simple:
 ❎ Add icons.
 
 ❎ Redesign the UI using some cool lib.
-
-❎ Localization according with the user web browser.
 
 ❎ Save data state.
 
@@ -88,10 +88,12 @@ The idea is simple:
 
 ## Resources
 
-* https://socket.io/
+* https://socket.io
 
-* https://www.bestcssbuttongenerator.com/
+* https://www.bestcssbuttongenerator.com
 
-* Favicon thks to http://transparent-favicon.info/
+* https://github.com/andreasremdt/simple-translator
+
+* Favicon thks to http://transparent-favicon.info
 
 Dev with ♥️ using [Node](https://nodejs.org/), [Express](https://expressjs.com/) and [Socket.io](https://socket.io/).
