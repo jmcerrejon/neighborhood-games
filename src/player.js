@@ -2,7 +2,7 @@ module.exports = () => {
  	const players = new Map()
 
 	const addPlayer = player => {
-		players.set(player.id, { player })
+		players.set(player.id, player)
 	}
 
 	const getAvailablePlayers = () => {
@@ -17,10 +17,20 @@ module.exports = () => {
 		players.delete(id)
 	}
 
+	const setScore = (id, validAnswer) => {
+		const player = players.get(id)
+		if (player.score === 0 && !validAnswer) {
+			return;
+		}
+		player.score += (validAnswer) ? 1 : -1
+		players.set(id, player)
+	}
+
 	return {
 		addPlayer,
 		getAvailablePlayers,
 		getPlayer,
-		delPlayer
+		delPlayer,
+		setScore
 	}
 }

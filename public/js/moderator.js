@@ -29,10 +29,14 @@ const checkAnswer = (isValid, playerId) => {
 	setMessage(msg)
 	sendMsgToAllPlayers(msg)
 	
-	socket.emit('check_answer', {
+	socket.emit('check_server_answer', {
 		isValid,
 		playerId
 	})
+}
+
+const setScore = player => {
+	document.getElementById(player.id).innerHTML = `· ${player.team} - ${player.score}`
 }
 
 const sendMsgToAllPlayers = content => {
@@ -62,9 +66,9 @@ $('#button').click(() => {
 
 socket.on('get_players', players => {
 	$('#players').empty()
-	players.map(({player}) => {
+	players.map((player) => {
 		const msg = getTranslation('moderator-player-new', [player.team])
-		$('#players').append(`<li id="${player.id}">· ${player.team}</li>`)
+		$('#players').append(`<li id="${player.id}">· ${player.team} - ${player.score}</li>`)
 		setMessage(msg)
 	})
 })
@@ -82,4 +86,8 @@ socket.on('team_clicked', playerWhoAnswer => {
 
 socket.on('spread_server_msg', msg => {
 	setMessage(msg.content)
+})
+
+socket.on('update_score', player => {
+	setScore(player)
 })

@@ -37,7 +37,10 @@ module.exports = (socket, io) => {
 	}
 
 	const checkAnswer = answer => {
-		io.sockets.emit('check_answer', answer)
+		players.setScore(answer.playerId, answer.isValid)
+		const player = players.getPlayer(answer.playerId)
+		io.sockets.emit('check_player_answer', answer.isValid, player)
+		io.sockets.emit('update_score', player)
 	}
 
 	return {

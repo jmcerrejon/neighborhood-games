@@ -20,6 +20,8 @@ Just a board to manage playing with your neighbours/family/friends using sockets
 
 * When moderator make a question, players must to click the yellow button ASAP and answer to win points.
 
+* Score.
+
 ## Installation
 
 On a computer or remote server:
@@ -54,7 +56,7 @@ The idea is simple:
 
 ✅ Localization according with the user web browser.
 
-❎ Score.
+✅ Score.
 
 ❎ Remove jQuery.
 
