@@ -1,9 +1,10 @@
 const socket = io({
 	forceNew: false
 })
-let player = {
+let localPlayer = {
 	team: getUrlParam('team', 'Harkonen House'),
-	room: getUrlParam('room', 'secondary')
+	room: getUrlParam('room', 'secondary'),
+	score: 0
 }
 let state = {
 	isReady: false,
@@ -15,11 +16,11 @@ let state = {
  */
 
 window.onload = () => {
-	socket.emit('new_player', player)
+	socket.emit('new_player', localPlayer)
 	socket.on('get_player', newPlayer => {
 		// FIXME Handle id 1
-		if (newPlayer.team == player.team) {
-			player.id = newPlayer.id
+		if (newPlayer.team == localPlayer.team) {
+			localPlayer.id = newPlayer.id
 		}
 		setWelcomeMessage()
 	})
@@ -41,14 +42,14 @@ const changeButton = ({isReady, newQuestion = false}) => {
 }
 
 const setWelcomeMessage = () => {
-	const msg = getTranslation('player-welcome', [player.team, player.room])
+	const msg = getTranslation('player-welcome', [localPlayer.team, localPlayer.room])
 	$('#chat')
 		.empty()
 		.append(msg)
 }
 
 const init = () => {
-	setTitle('Team: ' + player.team)
+	setTitle('Team: ' + localPlayer.team)
 	document.getElementById('content').placeholder = getTranslation('player-input-placeholder')
 }
 
@@ -66,13 +67,13 @@ socket.on('team_clicked', playerWhoAnswer => {
 	const msg = getTranslation('player-click-button', [playerWhoAnswer.team])
 	setMessage(msg)
 	// FIXME Handle id 2
-	if (player.team === playerWhoAnswer.team) {
+	if (localPlayer.team === playerWhoAnswer.team) {
 		setButtonColor('button-green')
 	}
 })
 
-socket.on('check_answer', ({isValid, playerId}) => {
-	if ((player.id === playerId) && (isValid === false)) {
+socket.on('check_player_answer', (isValid, player) => {
+	if ((localPlayer.id === player.id) && (isValid === false)) {
 		state.isReady = false
 		state.waitUntilNextQuestion = true
 		setButtonColor('button-red')
@@ -91,7 +92,7 @@ socket.on('check_answer', ({isValid, playerId}) => {
 $('form').on('submit', event => {
 	event.preventDefault()
 	let msg = {
-		name: player.team,
+		name: localPlayer.team,
 		content: $('#content').val().trim()
 	}
 	if (msg.content.length > 0) {
@@ -103,6 +104,6 @@ $('form').on('submit', event => {
 $('#button').click(event => {
 	if (state.isReady) {
 		// TODO Counter
-		socket.emit('button_pressed', player)
+		socket.emit('button_pressed', localPlayer)
 	}
 })
