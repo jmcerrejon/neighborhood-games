@@ -29,7 +29,7 @@ io.on('connection', socket => {
 
 	socket.on('button_pressed', buttonPressed)
 
-	socket.on('check_answer', checkAnswer)
+	socket.on('check_server_answer', checkAnswer)
 })
 
 app.use(express.static(__dirname + '/public'))
